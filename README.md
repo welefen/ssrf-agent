@@ -1,6 +1,6 @@
 # ssrf-agent
 
-make http(s) to prevent SSRF
+prevent SSRF in http(s) request
 
 ## Installation
 

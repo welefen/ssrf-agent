@@ -1,7 +1,7 @@
 {
   "name": "ssrf-agent",
   "version": "1.0.0",
-  "description": "make http(s) to prevent SSRF",
+  "description": "prevent SSRF in http(s) request",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
