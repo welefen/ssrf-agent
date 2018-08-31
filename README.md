@@ -42,5 +42,5 @@ fetch('http://www.welefen.com', {
 const getAgent = require('ssrf-agent');
 const agent = getAgent(ipChecker, agent);
 ```
-* ipChecker(ip, family = 4 | 6) {Function} check ip is allowed, default is `ip.isPrivate`
-* agent  {String | Object} default is `http`, support `http` `https` or `agent instance`
+* `ipChecker(ip, family = 4 | 6)` {Function} check ip is allowed, default is `ip.isPrivate`
+* `agent`  {String | Object} default is `http`, support `http` `https` or `agent instance`
