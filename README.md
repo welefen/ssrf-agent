@@ -2,10 +2,10 @@
 
 prevent SSRF in http(s) request
 
-## Installation
+## Install
 
 ```
-npm install ssrf-agent
+npm install ssrf-agent --save
 ```
 
 ## Usage
