@@ -6,7 +6,7 @@ const httpsAgent = new HttpsAgent();
 
 const getAgent = agent => {
   if (agent instanceof HttpAgent || agent instanceof HttpsAgent) return agent;
-  if (agent === 'https') return httpsAgent;
+  if (agent.startsWith('https')) return httpsAgent;
   return httpAgent;
 };
 
@@ -27,11 +27,11 @@ module.exports = function(ipChecker = defaultIpChecker, agent = 'http') {
   agent[CREATE_CONNECTION] = true;
   const createConnection = agent.createConnection;
   agent.createConnection = function(...options) {
-    const client = createConnection(...options);
+    const client = createConnection.call(this, ...options);
     client.on('lookup', (err, address, family) => {
       if (err) return;
       if (!ipChecker(address, family)) {
-        throw new Error(`DNS lookup: ${address} is not allowed`);
+        client.destroy(new Error(`DNS lookup ${address} is not allowed`));
       }
     });
     return client;
