@@ -13,7 +13,6 @@ npm install ssrf-agent --save
 ```js
 const ssrfAgent = require('ssrf-agent');
 const request = require('request');
-const agent = getAgent();
 // with request module
 const url = 'http://www.welefen.com'
 request(url, {
