@@ -11,24 +11,25 @@ npm install ssrf-agent --save
 ## Usage
 
 ```js
-const getAgent = require('ssrf-agent');
+const ssrfAgent = require('ssrf-agent');
 const request = require('request');
 const agent = getAgent();
 // with request module
-request('http://www.welefen.com', {
-  agent
+const url = 'http://www.welefen.com'
+request(url, {
+  agent: ssrfAgent(url)
 }, (err, response, body) => {
   
 })
 ```
 
 ```js
-const getAgent = require('ssrf-agent');
+const ssrfAgent = require('ssrf-agent');
 const fetch = require('node-fetch');
-const agent = getAgent();
 // with node-fetch module
-fetch('http://www.welefen.com', {
-  agent
+const url = 'http://www.welefen.com'
+fetch(url, {
+  agent: ssrfAgent(url)
 }).then(res => res.text).then(data => {
 
 }).catch(err => {
