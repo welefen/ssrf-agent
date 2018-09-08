@@ -42,5 +42,5 @@ fetch(url, {
 const getAgent = require('ssrf-agent');
 const agent = getAgent(ipChecker, agent);
 ```
-* `ipChecker(ip, family = 4 | 6)` {Function} check ip is allowed, default is `require('ip').isPrivate`
+* `ipChecker(ip)` {Function} check ip is allowed, default is `require('ip').isPrivate`
 * `agent`  {String | Object} default is `http`, support `http` `https` or `agent instance`

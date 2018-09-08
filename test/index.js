@@ -2,6 +2,8 @@ const getAgent = require('../index');
 const fetch = require('node-fetch');
 
 const urls = [
+  'http://10.16.133.61',
+  'http://urlqh.cn/mgwC8',
   'http://www.welefen.com/',
   'http://qiwoo.org/',
   'http://urlqh.cn/meRow',
