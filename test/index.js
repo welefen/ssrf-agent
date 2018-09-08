@@ -26,10 +26,10 @@ test('allowed url', async t => {
 
 test('disallowed url', async t => {
   const urls = [
-    'http://10.16.133.61',
-    'http://urlqh.cn/mgwC8',
-    'http://qiwoo.org/',
-    'http://urlqh.cn/meRow'
+    'http://10.16.133.61', // ip host url
+    'http://urlqh.cn/mgwC8', // short url with ip host url
+    'http://qiwoo.org/', // internal domain url
+    'http://urlqh.cn/meRow' // short url with internal domain url
   ];
 
   t.plan(urls.length);
