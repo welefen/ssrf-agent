@@ -26,7 +26,10 @@ test('allowed url', async t => {
 
 test('disallowed url', async t => {
   const urls = [
-    'http://10.16.133.61', // ip host url
+    'http://017700000001', // ip host url with octonary number
+    'http://127.0.0.1.xip.io/', // url with local dns
+    'http://A.com@127.0.0.1', // url with @
+    'http://127.0.0.1', // ip host url
     'http://urlqh.cn/mgwC8', // short url with ip host url
     'http://qiwoo.org/', // internal domain url
     'http://urlqh.cn/meRow' // short url with internal domain url
