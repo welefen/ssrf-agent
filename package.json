@@ -4,7 +4,10 @@
   "description": "prevent SSRF in http(s) request",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint && npm run test-cov",
+    "test-cov": "nyc ava test/ && nyc report --reporter=html",
+    "lint": "eslint index.js",
+    "prepublish": "npm test"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,11 @@
   },
   "homepage": "https://github.com/welefen/ssrf-agent#readme",
   "devDependencies": {
+    "ava": "^0.25.0",
     "eslint": "^5.4.0",
     "eslint-config-think": "^1.0.2",
-    "node-fetch": "^2.2.0"
+    "node-fetch": "^2.2.0",
+    "nyc": "^13.0.1"
   },
   "dependencies": {
     "ip": "^1.1.5"
