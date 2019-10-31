@@ -20,7 +20,7 @@ const defaultIpChecker = ip => {
 
 const CREATE_CONNECTION = Symbol('createConnection');
 
-module.exports = function (
+module.exports = function(
   ipChecker = defaultIpChecker,
   agent = 'http'
 ) {
@@ -32,27 +32,20 @@ module.exports = function (
   if (agent[CREATE_CONNECTION]) return agent;
   agent[CREATE_CONNECTION] = true;
 
-  const checker = (address, client) => {
-    if (ipChecker(address)) {
-      return;
-    }
-
-    return client.destroy(new Error(`DNS lookup ${address} is not allowed.`));
-  };
-
   const createConnection = agent.createConnection;
-  agent.createConnection = function (options, fn) {
-
+  agent.createConnection = function(options, fn) {
     const { host: address } = options;
-    if (!ipChecker(address, client)) {
-      throw new Error(`DNS lookup ${address} is not allowed.`)
+    if (!ipChecker(address)) {
+      throw new Error(`DNS lookup ${address} is not allowed.`);
     }
 
     const client = createConnection.call(this, options, fn);
-
     client.on('lookup', (err, address) => {
-      if (err) return;
-      checker(address, client);
+      if (err || ipChecker(address)) {
+        return;
+      }
+
+      return client.destroy(new Error(`DNS lookup ${address} is not allowed.`));
     });
 
     return client;
