@@ -1,6 +1,35 @@
 const { test } = require('ava');
+const { Agent: HTTPAgent } = require('http');
+const { Agent: HTTPSAgent } = require('https');
 const fetch = require('node-fetch');
 const getAgent = require('../index');
+
+test('getAgent with agent instance', async t => {
+  const urls = [
+    'http://127.0.0.1',
+    'https://www.baidu.com/'
+  ];
+
+  t.plan(urls.length);
+
+  try {
+    await fetch(urls[0], {
+      agent: getAgent(undefined, new HTTPAgent())
+    });
+    t.fail();
+  } catch (e) {
+    t.pass();
+  }
+
+  try {
+    await fetch(urls[1], {
+      agent: getAgent(undefined, new HTTPSAgent())
+    });
+    t.pass();
+  } catch (e) {
+    t.fail();
+  }
+});
 
 test('allowed url', async t => {
   const urls = [
