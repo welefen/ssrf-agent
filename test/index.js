@@ -33,10 +33,10 @@ test('getAgent with agent instance', async t => {
 
 test('allowed url', async t => {
   const urls = [
-    'http://www.welefen.com/',
+    'https://www.welefen.com/',
     'https://www.baidu.com/',
     'https://www.so.com/?src=so.com',
-    'http://s0.qhres.com/static/8f022693068c7a8c/fasdfasdf.js',
+    'http://s0.qhres2.com/static/8f022693068c7a8c/fasdfasdf.js',
     'https://www.so.com/s?ie=utf-8&fr=so.com&src=home_so.com&q=ww'
   ];
 
@@ -61,7 +61,9 @@ test('disallowed url', async t => {
     'http://127.0.0.1', // ip host url
     'http://urlqh.cn/mgwC8', // short url with ip host url
     'http://qiwoo.org/', // internal domain url
-    'http://urlqh.cn/meRow' // short url with internal domain url
+    'http://urlqh.cn/meRow', // short url with internal domain url
+    'http://[::]:80/',
+    'http://0000::1:80/'
   ];
 
   t.plan(urls.length);
