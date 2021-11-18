@@ -1,6 +1,6 @@
 const { Agent: HttpAgent } = require('http');
 const { Agent: HttpsAgent } = require('https');
-const { isPrivate, isV4Format } = require('ip');
+const { isPrivate, isV4Format, isV6Format } = require('ip');
 const httpAgent = new HttpAgent();
 const httpsAgent = new HttpsAgent();
 
@@ -11,7 +11,7 @@ const getAgent = agent => {
 };
 
 const defaultIpChecker = ip => {
-  if (isV4Format(ip)) {
+  if (isV4Format(ip) || isV6Format(ip)) {
     return !isPrivate(ip);
   }
 
@@ -20,7 +20,7 @@ const defaultIpChecker = ip => {
 
 const CREATE_CONNECTION = Symbol('createConnection');
 
-module.exports = function(
+module.exports = function (
   ipChecker = defaultIpChecker,
   agent = 'http'
 ) {
@@ -33,7 +33,7 @@ module.exports = function(
   agent[CREATE_CONNECTION] = true;
 
   const createConnection = agent.createConnection;
-  agent.createConnection = function(options, fn) {
+  agent.createConnection = function (options, fn) {
     const { host: address } = options;
     if (!ipChecker(address)) {
       throw new Error(`DNS lookup ${address} is not allowed.`);
