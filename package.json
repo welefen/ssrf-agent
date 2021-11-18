@@ -1,6 +1,6 @@
 {
   "name": "ssrf-agent",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "prevent SSRF in http(s) request",
   "main": "index.js",
   "scripts": {
